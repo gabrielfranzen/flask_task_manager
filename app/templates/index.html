@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{{ url_for('create') }}" class="btn btn-primary mt-2">Criar nova tarefa</a>
+<h1 class="mt-3">TAREFAS PENDENTES</h1>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Cadastro</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks if not task.is_completed %}
+        <tr>
+            <td>{{ task.name }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.creation_date.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td>
+                <a href="{{ url_for('update', id=task.id) }}" class="btn btn-primary m-1">Editar</a>
+                <a href="{{ url_for('delete', id=task.id) }}" class="btn btn-danger m-1">Deletar</a>
+                <a href="{{ url_for('complete', id=task.id) }}" class="btn btn-success m-1">Concluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<h1 class="mt-5">TAREFAS CONCLUÍDAS</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Cadastro</th>
+            <th scope="col">Conclusão</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks if task.is_completed %}
+        <tr>
+            <td>{{ task.name }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.creation_date.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td>{{ task.completion_date.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td>
+                <a href="{{ url_for('delete', id=task.id) }}" class="btn btn-danger">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
