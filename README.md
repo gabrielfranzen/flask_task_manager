@@ -1,5 +1,5 @@
 
-## criar anbiente
+## criar ambiente
 python -m venv .venv
 
 ## alterar permissão de execução de scripts para Windows (se necessário)
