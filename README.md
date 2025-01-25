@@ -2,8 +2,10 @@
 ## criar anbiente
 python -m venv .venv
 
-## ativar ambiente Windows
+## alterar permissão de execução de scripts para Windows (se necessário)
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+## ativar ambiente Windows
 .venv\Scripts\activate
 
 ## ativar ambiente Linux MacOs
