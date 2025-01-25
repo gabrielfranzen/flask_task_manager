@@ -1,18 +1,34 @@
 
-## criar ambiente
+## Criar ambiente
 python -m venv .venv
 
-## alterar permissão de execução de scripts para Windows (se necessário)
+## Alterar permissão de execução de scripts para Windows (se necessário)
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
-## ativar ambiente Windows
+## Ativar ambiente Windows
 .venv\Scripts\activate
 
-## ativar ambiente Linux MacOs
+## Ativar ambiente Linux MacOs
 source ./.venv/bin/activate
 
-## instalar dependências
-pip install -r requirements.txt 
+## Instalar dependências
+pip install -r requirements.txt
 
-## rodar
+## Configurar banco de dados
+Crie o banco de dados no gerenciador de sua preferência, eu utilizei o XAMPP.
+
+nome do BD: flask_task_manager
+usuário do BD (padrão do XAMPP): root
+(não utilizei senha)
+
+Altere as informações para conexão com o banco de dados no arquivo "config.py":
+
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root@localhost/flask_task_manager'
+
+
+Caso tenha feito algo diferente, siga a padronização:
+
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://<usuario>:<senha>@<host>/<nome_do_banco>'
+
+## Rodar
 python run.py 
